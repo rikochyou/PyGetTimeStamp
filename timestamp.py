@@ -3,12 +3,19 @@ import datetime
 
 
 def getAnyTimeStamp(time_num):
-    time_str = str(time_num)
+    """
+    :param time_num:  字符串 格式为：2017-04-03 00:00:00
+    :return: 任意时间点的时间戳
+    """
+
     # print(time.mktime(time.strptime(time_str, '%Y-%m-%d %X')))
     return time.mktime(time.strptime(time_str, '%Y-%m-%d %X'))
 
 
 def getMonthStartTimeStamp():
+    """
+    :return: 本月开始的时间戳
+    """
     # dt1 = time.mktime(datetime.date(datetime.date.today().year, datetime.date.today().month, 1).timetuple())
     # dt3 = datetime.datetime.fromtimestamp(dt1)
     # print(dt3)
@@ -16,6 +23,9 @@ def getMonthStartTimeStamp():
 
 
 def getWeekStartTimeStamp():
+    """
+    :return:  本周开始的时间戳
+    """
     dt_today = datetime.datetime.today()
     dt_weekday = dt_today.weekday()
     dt_week_start = (dt_today - datetime.timedelta(days = (dt_weekday))).strftime('%Y-%m-%d 00:00')
@@ -29,6 +39,9 @@ def getWeekStartTimeStamp():
 
 
 def getTodayStartTimeStamp():
+    """
+    :return: 今天开始的时间戳
+    """
     dt_today = datetime.datetime.today().strftime('%Y-%m-%d 00:00')
     dt1 = time.strptime(dt_today, '%Y-%m-%d 00:00')
     today_start_time_stamp = time.mktime(dt1)
@@ -39,10 +52,19 @@ def getTodayStartTimeStamp():
 
 
 def getNDayAgo():
+    """
+
+    :return: N天前的时间戳
+    """
     # print(datetime.datetime.now() - datetime.timedelta(days=100))
     return datetime.datetime.now() - datetime.timedelta(days=100)
 
 def getNMOnthAgo(_month):
+    """
+
+    :param _month:  数字类型
+    :return: N个月前该月开始的时间戳
+    """
     dt_month = datetime.datetime.today().month
     mmonth = _month % 12
     dt_year = datetime.date.today().year
@@ -62,6 +84,11 @@ def getNMOnthAgo(_month):
 
 
 def getNMonthAgoEach(num):
+    """
+
+    :param num:  数值类型
+    :return:  N个月前每个月开始的时间戳
+    """
     res = []
     for i in range(num):
         res.append(getNMOnthAgo(i))
